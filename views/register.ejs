@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Create a new account" />
+    <title>Create Account | Login System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="auth-shell">
+      <section class="auth-card" aria-labelledby="register-title">
+        <div class="auth-form">
+          <p class="eyebrow">Get started</p>
+          <h1 id="register-title">Create account</h1>
+          <p class="muted">Create your account in a few seconds.</p>
+
+          <% if (messages.error) { %>
+            <div class="alert error" role="alert"><%= messages.error %></div>
+          <% } %>
+
+          <form action="/register" method="post" novalidate>
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" autocomplete="name" placeholder="Your name" minlength="2" maxlength="100" required />
+
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" autocomplete="email" placeholder="you@example.com" maxlength="320" required />
+
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" maxlength="72" required />
+
+            <button type="submit">Create account</button>
+          </form>
+
+          <p class="form-footer">Already have an account? <a href="/login">Sign in</a></p>
+        </div>
+
+        <aside class="auth-panel">
+          <span class="panel-badge">Simple & secure</span>
+          <h2>Start with a protected account.</h2>
+          <p>Your password is never stored as plain text. Authentication is handled on the server.</p>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>
