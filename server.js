@@ -25,6 +25,21 @@ const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 const isProduction = process.env.NODE_ENV === 'production';
 
+// Initialize the database when running on Vercel
+const dbReady = initDb().catch((error) => {
+  console.error('Failed to initialize database:', error);
+  throw error;
+});
+
+app.use(async (req, res, next) => {
+  try {
+    await dbReady;
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
 if (!process.env.SESSION_SECRET) {
   throw new Error('SESSION_SECRET is required. Add it to your .env file.');
 }
